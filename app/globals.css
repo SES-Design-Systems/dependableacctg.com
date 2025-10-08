@@ -1,9 +1,27 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: #344783;
+  --color-primary-trans: #34468331;
+  --color-gray: #636669;
+  --color-white: #f7f7ff;
+  --color-white-trans: #f7f7ff71;
+  --color-black: #11182c;
+  --color-none: #ffffff00;
+
+  --font-joan: var(--font-joan);
+  --font-noto: var(--font-notoSans);
 }
 
+h1 {
+  @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[6rem];
+}
+h2 {
+  @apply text-2xl sm:text-3xl lg:text-4xl xl:text-5xl;
+}
+h3 {
+  @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
+}
+p {
+  @apply text-xs sm:text-sm lg:text-base xl:text-lg;
+}
