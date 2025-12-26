@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #344783;
-  --color-primary-trans: #34468331;
-  --color-gray: #636669;
-  --color-white: #f7f7ff;
-  --color-white-trans: #f7f7ff71;
-  --color-black: #11182c;
-  --color-none: #ffffff00;
+  --color-primary: #1F2A44; 
+  --color-primary-trans: #1F2A4431;
+  --color-secondary: #2E2E2E;
+  --color-white: #F7F8FA;               /* Background color */
+  --color-white-trans: #F7F8FA71;
+  --color-grey: #6B7280;                /* Secondary text and dividers */
+  --color-accent: #4A6FA5;              /* Icon, Hover states, highlights */
 
   --font-joan: var(--font-joan);
   --font-noto: var(--font-notoSans);
@@ -24,4 +24,13 @@ h3 {
 }
 p {
   @apply text-xs sm:text-sm lg:text-base xl:text-lg;
+}
+
+@layer utilities {
+  .scale-up {
+    @apply  hover:scale-105 transition-transform duration-200;
+  }
+  .shadow-up-left {
+    @apply shadow-[0_0_15px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(0,0,0,0.15)];
+  }
 }
