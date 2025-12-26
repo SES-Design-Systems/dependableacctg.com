@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Joan, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/nav/Header";
+import Footer from "@/components/Footer";
 
 const joan = Joan({
   variable: "--font-joan",
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body className={`${joan.variable} ${notoSans.variable} bg-white`}>
         <Header />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

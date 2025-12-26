@@ -1,7 +1,9 @@
+import Hero from "@/components/ui/Hero";
+
 export default function Home() {
   return (
-    <div>
-      <div></div>
-    </div>
+    <section className="h-fit pb-10">
+      <Hero />
+    </section>
   );
 }
