@@ -8,7 +8,7 @@ export default function Nav() {
         <Link
           key={item.name}
           href={item.href}
-          className="text-xl 2xl:text-2xl text-primary hover:text-grey"
+          className="text-xl 2xl:text-2xl text-white hover:text-white-trans"
         >
           {item.name}
         </Link>

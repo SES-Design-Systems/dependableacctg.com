@@ -23,12 +23,12 @@ export default function Sidebar() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed inset-0 z-50 bg-accent"
+            className="fixed inset-0 z-50 bg-primary"
           >
             <div className="h-fit flex items-center justify-between p-6 lg:p-12 xl:p-14">
               <span className="">
                 <Image
-                  src="/logo_icon.png"
+                  src="/logos/logo_icon.png"
                   alt="Dependable Accounting Co. Logo"
                   width="450"
                   height="550"
@@ -57,7 +57,7 @@ export default function Sidebar() {
       </AnimatePresence>
       {!isShowing && (
         <button onClick={onClick} className="scale-up cursor-pointer">
-          <Menu className="size-8 md:size-10 lg:size-12 text-primary" />
+          <Menu className="size-8 md:size-10 lg:size-12 text-white" />
         </button>
       )}
     </>

@@ -8,27 +8,34 @@
   --color-white-trans: #F7F8FA71;
   --color-grey: #6B7280;                /* Secondary text and dividers */
   --color-accent: #4A6FA5;              /* Icon, Hover states, highlights */
+  --color-accent2: #B28C49;
+  --color-accent2trans: #B28C4991;
 
-  --font-joan: var(--font-joan);
-  --font-noto: var(--font-notoSans);
+  --font-sourceSemibold: var(--sourceSemibold);
+  --font-sourceLight: var(--sourceLight);
 }
+
+@custom-variant hover (&:hover);
 
 h1 {
-  @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[6rem];
+  @apply leading-none tracking-[-1px] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[5rem] text-white;
 }
 h2 {
-  @apply text-2xl sm:text-3xl lg:text-4xl xl:text-5xl;
+  @apply leading-none tracking-[-1px] text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-primary;
 }
 h3 {
-  @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
+  @apply leading-none tracking-[-1px] text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-primary;
 }
 p {
-  @apply text-xs sm:text-sm lg:text-base xl:text-lg;
+  @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg 2xl:text-xl text-white;
 }
 
 @layer utilities {
+  .button {
+    @apply font-sourceSemibold leading-normal text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white;
+  }
   .scale-up {
-    @apply  hover:scale-105 transition-transform duration-200;
+    @apply hover:scale-105 transition-transform duration-200;
   }
   .shadow-up-left {
     @apply shadow-[0_0_15px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(0,0,0,0.15)];

@@ -5,13 +5,13 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-[100] h-fit flex items-center justify-between p-6 lg:p-12 xl:p-14 2xl:px-34">
+    <header className="sticky top-0 z-[100] h-fit flex items-center justify-between p-6 lg:p-8 xl:p-10 2xl:px-18 bg-primary">
       <div>
         <Link href="/" className="cursor-pointer ">
           <span className="">
             <Image
-              src="/full_logo.png"
-              alt="Dependable Accounting Co. Logo"
+              src="/logos/full_logo_white.svg"
+              alt="Dependable Accounting Logo - Tax services SI"
               width="750"
               height="250"
               className="h-auto w-40 md:w-45 lg:w-55 xl:w-60 2xl:w-70 "
