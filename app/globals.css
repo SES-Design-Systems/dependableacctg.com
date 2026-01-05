@@ -18,7 +18,7 @@
 @custom-variant hover (&:hover);
 
 h1 {
-  @apply leading-none tracking-[-1px] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[5rem] text-white;
+  @apply leading-none tracking-[-1px] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[4.5rem] text-white;
 }
 h2 {
   @apply leading-none tracking-[-1px] text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-primary;
@@ -27,7 +27,13 @@ h3 {
   @apply leading-none tracking-[-1px] text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-primary;
 }
 p {
-  @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg 2xl:text-xl text-white;
+  @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg 2xl:text-xl;
+}
+
+@layer components {
+  .section-container {
+    @apply pt-10 md:py-14 lg:py-18 xl:py-22 px-4;
+  }
 }
 
 @layer utilities {
@@ -36,6 +42,9 @@ p {
   }
   .scale-up {
     @apply hover:scale-105 transition-transform duration-200;
+  }
+  .scale-down {
+    @apply active:scale-95 transition-transform duration-200;
   }
   .shadow-up-left {
     @apply shadow-[0_0_15px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(0,0,0,0.15)];

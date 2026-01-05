@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-[100] h-fit flex items-center justify-between p-6 lg:p-8 xl:p-10 2xl:px-18 bg-primary">
+    <header className="sticky top-0 z-[100] h-fit flex items-center justify-between p-6 lg:p-8 xl:px-16 2xl:px-24 bg-primary">
       <div>
         <Link href="/" className="cursor-pointer ">
           <span className="">
@@ -14,15 +14,15 @@ export default function Header() {
               alt="Dependable Accounting Logo - Tax services SI"
               width="750"
               height="250"
-              className="h-auto w-40 md:w-45 lg:w-55 xl:w-60 2xl:w-70 "
+              className="h-auto w-40 md:w-45 lg:w-55 "
             />
           </span>
         </Link>
       </div>
-      <div className="xl:hidden">
+      <div className="lg:hidden">
         <Sidebar />
       </div>
-      <div className="hidden xl:flex">
+      <div className="hidden lg:flex">
         <Nav />
       </div>
     </header>
