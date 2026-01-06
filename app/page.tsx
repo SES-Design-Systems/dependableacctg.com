@@ -1,6 +1,7 @@
 import Hero from "@/components/ui/Hero";
 import Services from "@/components/services/Services";
 import HomeSchedule from "@/components/ui/HomeSchedule";
+import HomeAbout from "@/components/ui/HomeAbout";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Services />
       <HomeSchedule />
+      <HomeAbout />
     </section>
   );
 }

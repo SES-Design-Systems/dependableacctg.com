@@ -14,7 +14,7 @@ export default function HomeSchedule() {
         height={319}
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="relative z-10 py-10 flex flex-col items-start justify-center gap-4 ">
+      <div className="relative z-10 py-10 flex flex-col items-start justify-center gap-4 md:px-14">
         <h3>Schedule Your Appointment <br className="md:hidden"/> Online</h3>
         <h4 className="text-grey!">Book a time that works for you.</h4>
         <span className="block h-[2px] bg-grey/60 w-[300px] rounded-full" />

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-[100] h-fit flex items-center justify-between p-6 lg:p-8 xl:px-16 2xl:px-24 bg-primary">
+    <header className="z-[100] h-fit flex items-center justify-between p-6 lg:p-8 xl:px-16 2xl:px-24 bg-primary">
       <div>
         <Link href="/" className="cursor-pointer ">
           <span className="">

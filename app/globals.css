@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #1F2A44; 
-  --color-primary-trans: #1F2A4431;
-  --color-secondary: #2E2E2E;
-  --color-white: #F7F8FA;               /* Background color */
-  --color-white-trans: #F7F8FA71;
-  --color-grey: #6B7280;                /* Secondary text and dividers */
-  --color-accent: #4A6FA5;              /* Icon, Hover states, highlights */
-  --color-accent2: #B28C49;
-  --color-accent2trans: #B28C4991;
+  --color-primary: #1f2a44;
+  --color-primary-trans: #1f2a4431;
+  --color-secondary: #2e2e2e;
+  --color-white: #f7f8fa; /* Background color */
+  --color-white-trans: #f7f8fa71;
+  --color-grey: #6b7280; /* Secondary text and dividers */
+  --color-accent: #4a6fa5; /* Icon, Hover states, highlights */
+  --color-accent2: #b28c49;
+  --color-accent2trans: #b28c4991;
 
   --font-sourceSemibold: var(--sourceSemibold);
   --font-sourceLight: var(--sourceLight);
@@ -28,6 +28,9 @@ h3 {
 }
 p {
   @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg 2xl:text-xl;
+}
+a {
+  @apply cursor-pointer hover:text-white-trans;
 }
 
 @layer components {
@@ -48,5 +51,8 @@ p {
   }
   .shadow-up-left {
     @apply shadow-[0_0_15px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(0,0,0,0.15)];
+  }
+  .full-shadow {
+    @apply shadow-[0_0_6px_rgba(0,0,0,0.2)];
   }
 }
