@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PrimaryButton from "../Button";
+import PrimaryButton from "../../Button";
 
 export default function HomeSchedule() {
   return (

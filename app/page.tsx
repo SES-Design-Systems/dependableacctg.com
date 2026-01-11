@@ -1,7 +1,7 @@
-import Hero from "@/components/ui/Hero";
-import Services from "@/components/services/Services";
-import HomeSchedule from "@/components/ui/HomeSchedule";
-import HomeAbout from "@/components/ui/HomeAbout";
+import Hero from "@/components/ui/home/Hero";
+import Services from "@/components/ui/home/services/Services";
+import HomeSchedule from "@/components/ui/home/HomeSchedule";
+import HomeAbout from "@/components/ui/home/HomeAbout";
 
 export default function Home() {
   return (

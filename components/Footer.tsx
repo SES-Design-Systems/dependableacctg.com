@@ -5,13 +5,15 @@ export default function Footer() {
   return (
     <footer className="h-fit bg-primary flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-10 md:gap-15 xl:gap-20 2xl:gap-50 xl:flex-row py-8 xl:py-16">
-        <Image
-          src="/logos/full_logo_white.svg"
-          alt="Dependable Accounting Logo - Tax services SI"
-          width="750"
-          height="250"
-          className="h-auto w-60 md:w-65 lg:w-80 2xl:w-100 "
-        />
+        <Link href="/" className="cursor-pointer ">
+          <Image
+            src="/logos/full_logo_white.svg"
+            alt="Dependable Accounting Logo - Tax services SI"
+            width="750"
+            height="250"
+            className="h-auto w-60 md:w-65 lg:w-80 2xl:w-100 "
+          />
+        </Link>
         <div className="flex flex-col gap-10 md:flex-row md:gap-40 xl:gap-20 2xl:gap-50 items-start lg:text-lg">
           <div className="flex flex-col items-start text-white font-sourceSemibold gap-2">
             <a
@@ -37,7 +39,7 @@ export default function Footer() {
 
       <div className="flex flex-col items-center justify-between w-full pt-10">
         <span className="h-[2px] w-full bg-grey"></span>
-        <div className="flex items-center justify-between w-full p-1">
+        <div className="flex items-center justify-between w-full p-2">
           <p className="text-[10px]! md:text-[14px]! text-white!">
             &copy; {new Date().getFullYear()} Dependable Accounting Co. All
             rights reserved.

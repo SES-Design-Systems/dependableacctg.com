@@ -26,16 +26,22 @@ h2 {
 h3 {
   @apply leading-none tracking-[-1px] text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-primary;
 }
+h4 {
+  @apply leading-none tracking-[-1px] text-xl lg:text-2xl xl:text-3xl text-primary
+}
 p {
-  @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg 2xl:text-xl;
+  @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg;
 }
 a {
-  @apply cursor-pointer hover:text-white-trans;
+  @apply cursor-pointer hover:text-white-trans text-lg md:text-xl;
 }
 
 @layer components {
   .section-container {
     @apply pt-10 md:py-14 lg:py-18 xl:py-22 px-4;
+  }
+  .contact-container {
+    @apply flex flex-col items-center justify-start gap-2 border-grey/20 border p-4 h-[215px] lg:h-[235px] w-[250px] md:w-full;
   }
 }
 
