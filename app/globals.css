@@ -27,7 +27,7 @@ h3 {
   @apply leading-none tracking-[-1px] text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-primary;
 }
 h4 {
-  @apply leading-none tracking-[-1px] text-xl lg:text-2xl xl:text-3xl text-primary
+  @apply leading-none tracking-[-1px] text-lg lg:text-xl xl:text-2xl text-primary font-sourceLight;
 }
 p {
   @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg;
@@ -35,10 +35,16 @@ p {
 a {
   @apply cursor-pointer hover:text-white-trans text-lg md:text-xl;
 }
+th {
+  @apply md:text-lg xl:text-xl;
+}
+td {
+  @apply md:text-lg xl:text-xl;
+}
 
 @layer components {
   .section-container {
-    @apply pt-10 md:py-14 lg:py-18 xl:py-22 px-4;
+    @apply pt-10 md:py-14 lg:py-18 xl:py-22 px-4 w-full;
   }
   .contact-container {
     @apply flex flex-col items-center justify-start gap-2 border-grey/20 border p-4 h-[215px] lg:h-[235px] w-[250px] md:w-full;
