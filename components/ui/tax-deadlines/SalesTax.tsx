@@ -9,8 +9,8 @@ export default function SalesTax() {
     <section className="section-container !pt-0 !pb-0 flex flex-col items-center justify-center">
       <h3 className="pb-2">Business Owners</h3>
       <p className="text-center max-w-xs md:max-w-lg">
-        All employees and subcontractors must recieve their tax documents (W-2's
-        &amp; 1099's)
+        All employees and subcontractors must recieve their tax documents (W-2&apos;s
+        &amp; 1099&apos;s)
         <span className="font-bold"> no later then Januray 31st</span>
       </p>
       <table className="w-full md:max-w-lg lg:max-w-2xl border border-grey full-shadow my-6">
