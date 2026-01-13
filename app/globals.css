@@ -24,7 +24,7 @@ h2 {
   @apply leading-none tracking-[-1px] text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-primary;
 }
 h3 {
-  @apply leading-none tracking-[-1px] text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-primary;
+  @apply leading-none tracking-[-1px] text-xl sm:text-2xl lg:text-3xl text-primary;
 }
 h4 {
   @apply leading-none tracking-[-1px] text-lg lg:text-xl xl:text-2xl text-primary font-sourceLight;
