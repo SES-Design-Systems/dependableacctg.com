@@ -6,7 +6,7 @@
   --color-secondary: #2e2e2e;
   --color-white: #f7f8fa; /* Background color */
   --color-white-trans: #f7f8fa71;
-  --color-grey: #6b7280; /* Secondary text and dividers */
+  --color-grey: #4f5255; /* Secondary text and dividers */
   --color-accent: #4a6fa5; /* Icon, Hover states, highlights */
   --color-accent2: #b28c49;
   --color-accent2trans: #b28c4991;
@@ -44,7 +44,7 @@ td {
 
 @layer components {
   .section-container {
-    @apply pt-10 md:py-14 lg:py-18 xl:py-22 px-4 w-full;
+    @apply py-10 md:pt-10 md:py-14 lg:py-18 xl:py-22 px-4 w-full;
   }
   .contact-container {
     @apply flex flex-col items-center justify-start gap-2 border-grey/20 border p-4 h-[215px] lg:h-[235px] w-[250px] md:w-full;
@@ -53,7 +53,7 @@ td {
 
 @layer utilities {
   .button {
-    @apply font-sourceSemibold leading-normal text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white;
+    @apply font-sourceSemibold leading-normal tracking-[.5px] text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white;
   }
   .scale-up {
     @apply hover:scale-105 transition-transform duration-200;
@@ -65,6 +65,6 @@ td {
     @apply shadow-[0_0_15px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(0,0,0,0.15)];
   }
   .full-shadow {
-    @apply shadow-[0_0_6px_rgba(0,0,0,0.2)];
+    @apply shadow-[0_0_5px_rgba(0,0,0,0.2)];
   }
 }

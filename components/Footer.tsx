@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="h-fit bg-primary flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center gap-10 md:gap-15 xl:gap-20 2xl:gap-50 xl:flex-row py-8 xl:py-16">
+    <footer className="h-fit bg-primary flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center gap-10 md:gap-15 xl:gap-20 2xl:gap-50 xl:flex-row py-8 xl:py-16 px-4">
         <Link href="/" className="cursor-pointer ">
           <Image
             src="/logos/full_logo_white.svg"
@@ -40,14 +40,14 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-between w-full pt-10">
         <span className="h-[2px] w-full bg-grey"></span>
         <div className="flex items-center justify-between w-full p-2">
-          <p className="text-[10px]! md:text-[14px]! text-white!">
+          <p className="text-[10px]! !tracking-[.5px] md:text-[14px]! text-white!">
             &copy; {new Date().getFullYear()} Dependable Accounting Co. All
             rights reserved.
           </p>
           <a
             href="https://craigsampson.com"
             target="_blank"
-            className="font-sourceLight text-[10px]! md:text-[14px]! text-white!"
+            className="tracking-[.5px] font-sourceLight text-[10px]! md:text-[14px]! text-white!"
           >
             Managed by CS
           </a>

@@ -46,7 +46,7 @@ export default function Sidebar() {
                   key={item.name}
                   href={item.href}
                   onClick={onClick}
-                  className="text-2xl lg:text-3xl text-white hover:text-white/80 scale-up"
+                  className="!text-2xl lg:!text-3xl text-white hover:text-white/80 scale-up"
                 >
                   {item.name}
                 </Link>

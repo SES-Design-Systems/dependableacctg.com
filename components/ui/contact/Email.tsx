@@ -12,10 +12,10 @@ export default function Email() {
           className=""
         />
 
-        <h4>Email Us</h4>
+        <h3 className="!font-bold">Email</h3>
       </div>
       <span className="h-[1px] w-full bg-grey/20" />
-      <a href="mailto:andrew@dependableacctg.com">info@dependableacctg.com</a>
+      <a href="mailto:andrew@dependableacctg.com" className="hover:!text-primary/70">info@dependableacctg.com</a>
       <p className="text-center">We typically respond within 1 business day</p>
     </div>
   );
