@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-between w-full pt-10">
+      <div className="flex flex-col items-center justify-between w-full pt-10 xl:pt-0">
         <span className="h-[2px] w-full bg-grey"></span>
         <div className="flex items-center justify-between w-full p-2">
           <p className="text-[10px]! !tracking-[.5px] md:text-[14px]! text-white!">

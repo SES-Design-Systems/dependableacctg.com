@@ -26,7 +26,7 @@ export default function taxDeadlines() {
     <section className="h-fit py-10">
         <div className="flex flex-col items-center justify-center gap-2 md:gap-4">
           <h1 className="text-primary!">Tax Deadlines</h1>
-          <h3 className="text-grey! text-center max-w-xs md:max-w-lg xl:max-w-4xl !font-sourceLight">
+          <h3 className="text-grey! text-center max-w-xs md:max-w-[550px] xl:max-w-4xl !font-sourceLight">
             Stay on top of important tax deadlines for businesses, nonprofits,
             and payroll tax filings. Review the key due dates to ensure timely
             filing and compliance
