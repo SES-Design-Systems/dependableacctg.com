@@ -81,6 +81,10 @@ export const siteConfig = {
     // Minimum notice required (in hours)
     minimumNoticeHours: 24,
 
+    // Business hours (24-hour format)
+    openHour: 9,  // 9am
+    closeHour: 17, // 5pm
+
     // business info
     businessInfo: {
       name: "Andrew Finocchiaro", // who am i making an appointment with
