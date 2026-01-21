@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import { getCalendarClient } from "@/lib/google";
 import { siteConfig } from "@/config/site";
 
+// Calculate timezone offset in milliseconds for a given date and timezone
+function getTimezoneOffset(date: Date, timezone: string): number {
+  const utcTime = date.toLocaleString("en-US", { timeZone: "UTC" });
+  const tzTime = date.toLocaleString("en-US", { timeZone: timezone });
+  return new Date(utcTime).getTime() - new Date(tzTime).getTime();
+}
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -30,11 +37,16 @@ export async function GET(req: Request) {
     }
 
     const calendar = getCalendarClient();
+    const { timezone } = siteConfig.business;
+    const tzOffset = getTimezoneOffset(selectedDate, timezone);
 
     const timeMin = new Date(selectedDate);
     timeMin.setHours(0, 0, 0, 0);
+    timeMin.setTime(timeMin.getTime() + tzOffset);
+
     const timeMax = new Date(selectedDate);
     timeMax.setHours(23, 59, 59, 999);
+    timeMax.setTime(timeMax.getTime() + tzOffset);
 
     // Use events API instead of freebusy to get individual events
     const res = await calendar.events.list({
@@ -68,13 +80,17 @@ export async function GET(req: Request) {
       }
     }
 
-    // Generate slots based on business hours
+    // Generate slots based on business hours in the configured timezone
     const { openHour, closeHour } = siteConfig.business;
+
     const slots: { start: string; end: string }[] = [];
     let current = new Date(selectedDate);
     current.setHours(openHour, 0, 0, 0);
+    current.setTime(current.getTime() + tzOffset);
+
     const endOfDay = new Date(selectedDate);
     endOfDay.setHours(closeHour, 0, 0, 0);
+    endOfDay.setTime(endOfDay.getTime() + tzOffset);
 
     while (current < endOfDay) {
       const slotEnd = new Date(current.getTime() + duration * 60000);
