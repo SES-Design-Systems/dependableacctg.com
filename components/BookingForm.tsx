@@ -347,7 +347,10 @@ export default function BookingForm() {
               required
               selected={selected}
               onSelect={handleDateSelect}
-              disabled={{ before: new Date() }}
+              disabled={[
+                { before: new Date() },
+                (date) => !siteConfig.business.bookingDays.includes(date.getDay())
+              ]}
               className="text-sm lg:text-base"
             />
             <input

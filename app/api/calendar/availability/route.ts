@@ -18,6 +18,17 @@ export async function GET(req: Request) {
       );
     }
 
+    // Check if the day is a valid booking day
+    const { bookingDays } = siteConfig.business;
+    const dayOfWeek = selectedDate.getDay();
+    if (!bookingDays.includes(dayOfWeek)) {
+      return NextResponse.json({
+        date: selectedDate.toISOString().split("T")[0],
+        availableSlots: [],
+        totalSlots: 0,
+      });
+    }
+
     const calendar = getCalendarClient();
 
     const timeMin = new Date(selectedDate);

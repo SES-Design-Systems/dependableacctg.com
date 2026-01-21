@@ -85,6 +85,9 @@ export const siteConfig = {
     openHour: 9,  // 9am
     closeHour: 17, // 5pm
 
+    // Days available for booking (0=Sunday, 1=Monday, ... 6=Saturday)
+    bookingDays: [1, 2, 3, 4, 5], // Mon-Fri
+
     // business info
     businessInfo: {
       name: "Andrew Finocchiaro", // who am i making an appointment with
