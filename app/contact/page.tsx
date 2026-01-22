@@ -3,23 +3,30 @@ import Information from "@/components/ui/contact/Information";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Dependable Accounting - Staten Island, NY",
+  title: "Book a Tax Appointment | Staten Island Accountant | Dependable Accounting",
   description:
-    "Get in touch with Dependable Accounting for all your accounting needs. Located at 73 Ottavio Promenade, Staten Island. Call (718) 351-9201 or email us today.",
-  keywords: ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
+    "Schedule your tax return appointment with a trusted Staten Island accountant. Book online for personal or business tax preparation. Located in Staten Island, NY.",
+  keywords: [
+    "book tax appointment Staten Island",
+    "tax accountant near me",
+    "Staten Island tax preparer",
+    "schedule tax return appointment",
+    "accountant Staten Island NY",
+    "tax consultation Staten Island",
+  ],
   openGraph: {
-    title: "Contact Us | Dependable Accounting",
+    title: "Book a Tax Appointment | Staten Island Accountant",
     description:
-      "Get in touch with Dependable Accounting for all your accounting needs in Staten Island, NY.",
-    images: ["/best_accounting_staten_island.jpg"],
+      "Schedule your tax return appointment with a trusted Staten Island accountant. Book online for personal or business tax preparation.",
+    images: ["/logos/full_logo_white.png"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us | Dependable Accounting",
+    title: "Book a Tax Appointment | Staten Island Accountant",
     description:
-      "Get in touch with Dependable Accounting for all your accounting needs in Staten Island, NY.",
-    images: ["/best_accounting_staten_island.jpg"],
+      "Schedule your tax return appointment with a trusted Staten Island accountant. Book online for personal or business tax preparation.",
+    images: ["/logos/full_logo_white.png"],
   },
 };
 

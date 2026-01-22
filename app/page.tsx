@@ -5,20 +5,27 @@ import HomeAbout from "@/components/ui/home/HomeAbout";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Dependable Accounting | Professional Accounting Services in Staten Island',
-  description: 'Expert accounting, bookkeeping, and tax services for businesses and individuals in Staten Island, NY. Trusted by local businesses for over [X] years.',
-  keywords: ['keyword1', 'keyword2', 'keyword3', 'keyword4', 'keyword5'],
+  title: 'Staten Island Accountant | Tax Returns | Dependable Accounting',
+  description: 'Trusted Staten Island accountant offering personal and business tax returns, and tax planning services. Serving Staten Island, NY and surrounding areas.',
+  keywords: [
+    'Staten Island accountant',
+    'tax returns Staten Island',
+    'accountant Staten Island NY',
+    'tax preparation Staten Island',
+    'business tax returns Staten Island',
+    'personal tax returns Staten Island',
+  ],
   openGraph: {
-    title: 'Dependable Accounting | Professional Accounting Services',
-    description: 'Expert accounting, bookkeeping, and tax services for businesses and individuals in Staten Island, NY.',
-    images: ['/best_accounting_staten_island.jpg'],
+    title: 'Staten Island Accountant | Tax Returns',
+    description: 'Trusted Staten Island accountant offering personal and business tax returns, bookkeeping, and tax planning services.',
+    images: ['/logos/full_logo_white.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dependable Accounting | Professional Accounting Services',
-    description: 'Expert accounting, bookkeeping, and tax services for businesses and individuals in Staten Island, NY.',
-    images: ['/best_accounting_staten_island.jpg'],
+    title: 'Staten Island Accountant | Tax Returns',
+    description: 'Trusted Staten Island accountant offering personal and business tax returns, and tax planning services.',
+    images: ['/logos/full_logo_white.png'],
   },
 };
 

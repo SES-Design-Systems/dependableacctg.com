@@ -4,20 +4,29 @@ import TaxDeadlines from "@/components/ui/tax-deadlines/TaxDeadlines";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tax Deadlines | NY, NJ & FL Filing Dates | Dependable Accounting',
-  description: 'Stay compliant with important tax deadlines for businesses, nonprofits, sales tax, and payroll filings in NY, NJ, and FL. Updated quarterly filing dates and due dates.',
-  keywords: ['tax deadlines', 'tax return deadline', 'personal tax return deadline', 'keyword4', 'keyword5'],
+  title: '2026 Tax Deadlines | NY, NJ & FL Filing Dates | Staten Island Accountant',
+  description: 'Important 2026 tax deadlines for personal and business returns, payroll, and sales tax in NY, NJ, and FL. Staten Island accountant helping you stay compliant.',
+  keywords: [
+    '2026 tax deadlines',
+    'tax return deadline 2026',
+    'NY tax filing deadline',
+    'business tax deadline',
+    'payroll tax due dates',
+    'sales tax filing dates NY',
+    'Staten Island tax help',
+    'quarterly tax deadlines',
+  ],
   openGraph: {
-    title: 'Tax Deadlines 2026 | NY, NJ, FL Filing Dates',
-    description: 'Stay on top of important tax deadlines for businesses, nonprofits, and payroll tax filings in NY, NJ, and FL.',
-    images: ['/best_tax_returns_staten_island.jpg'],
+    title: '2026 Tax Deadlines | NY, NJ & FL | Staten Island Accountant',
+    description: 'Important 2026 tax deadlines for personal and business returns, payroll, and sales tax. Stay compliant with Dependable Accounting.',
+    images: ['/logos/full_logo_white.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tax Deadlines 2026 | NY, NJ & FL Filing Dates',
-    description: 'Stay on top of important tax deadlines for businesses, nonprofits, and payroll tax filings in NY, NJ, and FL.',
-    images: ['/best_tax_returns_staten_island.jpg'],
+    title: '2026 Tax Deadlines | NY, NJ & FL | Staten Island Accountant',
+    description: 'Important 2026 tax deadlines for personal and business returns, payroll, and sales tax. Stay compliant with Dependable Accounting.',
+    images: ['/logos/full_logo_white.png'],
   },
 };
 

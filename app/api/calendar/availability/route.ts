@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCalendarClient } from "@/lib/google";
 import { siteConfig } from "@/config/site";
+import { validateBookingEnv, ENV_ERROR_MESSAGE } from "@/lib/env";
 
 // Calculate timezone offset in milliseconds for a given date and timezone
 function getTimezoneOffset(date: Date, timezone: string): number {
@@ -11,6 +12,12 @@ function getTimezoneOffset(date: Date, timezone: string): number {
 
 export async function GET(req: Request) {
   try {
+    const envCheck = validateBookingEnv();
+    if (!envCheck.valid) {
+      console.error("Missing environment variables:", envCheck.missing);
+      return NextResponse.json({ error: ENV_ERROR_MESSAGE }, { status: 503 });
+    }
+
     const { searchParams } = new URL(req.url);
     const duration = parseInt(searchParams.get("duration") || "30");
     const date =

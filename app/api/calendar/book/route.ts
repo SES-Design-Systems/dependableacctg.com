@@ -4,6 +4,7 @@ import { getCalendarClient } from "@/lib/google";
 import { ipRatelimit, emailRatelimit } from "@/lib/ratelimit";
 import { z } from "zod";
 import { siteConfig } from "@/config/site";
+import { validateBookingEnv, ENV_ERROR_MESSAGE } from "@/lib/env";
 
 // Dynamically create the enum from config
 const meetingTypeIds = siteConfig.meetingTypes.map((type) => type.id) as [
@@ -25,6 +26,12 @@ const bookingSchema = z.object({
 
 export async function POST(req: Request) {
   try {
+    const envCheck = validateBookingEnv();
+    if (!envCheck.valid) {
+      console.error("Missing environment variables:", envCheck.missing);
+      return NextResponse.json({ error: ENV_ERROR_MESSAGE }, { status: 503 });
+    }
+
     // Get IP for rate limiting
     const headersList = await headers();
     const ip = headersList.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
@@ -205,9 +212,8 @@ ${message ? `\nMessage: ${message}` : ""}
       );
     }
 
-    const message = error instanceof Error ? error.message : "Failed to create booking";
     return NextResponse.json(
-      { error: message },
+      { error: "Failed to create booking. Please try again or contact the site owner." },
       { status: 500 }
     );
   }
