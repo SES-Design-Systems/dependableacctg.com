@@ -9,7 +9,7 @@ export default function Information() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:max-w-2xl place-items-center">
         <CallUs />
         <Visit />
-        <div className="md:col-span-2 w-full place-items-center2">
+        <div className="md:col-span-2 w-full place-items-center">
           <Email />
         </div>
       </div>
