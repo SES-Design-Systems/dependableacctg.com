@@ -1,23 +1,27 @@
 import type { Metadata } from "next";
-import { Joan, Noto_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/nav/Header";
+import Footer from "@/components/Footer";
+import localFont from "next/font/local";
 
-const joan = Joan({
-  variable: "--font-joan",
-  subsets: ["latin"],
-  weight: "400",
-});
+const sourceSemibold = localFont({
+  src: '../fonts/SourceSansPro-Semibold.otf',
+  variable: '--sourceSemibold'
+})
 
-const notoSans = Noto_Sans({
-  variable: "--font-noto-sans",
-  subsets: ["latin"],
-});
+const sourceLight = localFont({
+  src: '../fonts/SourceSansPro-Light.otf',
+  variable: '--sourceLight'
+})
 
 export const metadata: Metadata = {
   title: "Dependable Accounting Co.",
-  description: "Personal and business tax preparation and accounting services, located in Tottenville, Staten Island, NY.",
-  verification: {
-    google: "PBBFtBWVxob8h3KT2Rjq83To5eSb7Fu_31nG85_6foI",
+  description: "Trusted Staten Island accountant offering personal and business tax returns, and tax planning services. Serving Staten Island, NY and surrounding areas.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" }, 
+    ],
   },
 };
 
@@ -28,10 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${joan.variable} ${notoSans.variable} antialiased bg-[url('/background.svg')] min-h-screen bg-cover`}
-      >
-        {children}
+      <body className={`${sourceSemibold.variable}  ${sourceLight.variable} font-sourceSemibold bg-white`}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

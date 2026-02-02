@@ -1,22 +1,41 @@
-import { Minus } from "lucide-react";
+import Hero from "@/components/ui/home/Hero";
+import Services from "@/components/ui/home/services/Services";
+import HomeSchedule from "@/components/ui/home/HomeSchedule";
+import HomeAbout from "@/components/ui/home/HomeAbout";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Staten Island Accountant | Tax Returns | Dependable Accounting',
+  description: 'Trusted Staten Island accountant offering personal and business tax returns, and tax planning services. Serving Staten Island, NY and surrounding areas.',
+  keywords: [
+    'Staten Island accountant',
+    'tax returns Staten Island',
+    'accountant Staten Island NY',
+    'tax preparation Staten Island',
+    'business tax returns Staten Island',
+    'personal tax returns Staten Island',
+  ],
+  openGraph: {
+    title: 'Staten Island Accountant | Tax Returns',
+    description: 'Trusted Staten Island accountant offering personal and business tax returns, bookkeeping, and tax planning services.',
+    images: ['/logos/full_logo_white.png'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Staten Island Accountant | Tax Returns',
+    description: 'Trusted Staten Island accountant offering personal and business tax returns, and tax planning services.',
+    images: ['/logos/full_logo_white.png'],
+  },
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center gap-40 min-h-screen">
-      <div className="w-full flex justify-between p-1 lg:p-3 font-joan">
-        <h3>Dependable Accounting Co.</h3>
-        <h3>(718) 351-9201</h3>
-      </div>
-      <div className="font-noto uppercase flex-grow">
-        <div className="flex flex-col items-center justify-center gap-6 bg-white-trans md:bg-none p-2 rounded-xl">
-          <h2 className="flex items-center gap-1"><Minus />new website<Minus /></h2>
-          <h1 className="font-bold">under construction</h1>
-          <h2 className="font-semibold text-primary">stay tuned</h2>
-        </div>
-      </div>
-      <div className="bg-white w-full">
-        {/* <p className="text-center p-1">&copy; {new Date().getFullYear()} Dependable Accounting Co. All rights reserved.</p> */}
-      </div>
-    </div>
+    <section className="h-fit pb-10">
+      <Hero />
+      <Services />
+      <HomeSchedule />
+      <HomeAbout />
+    </section>
   );
 }

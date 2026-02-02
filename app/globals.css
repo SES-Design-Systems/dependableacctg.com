@@ -1,27 +1,100 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #344783;
-  --color-primary-trans: #34468331;
-  --color-gray: #636669;
-  --color-white: #f7f7ff;
-  --color-white-trans: #f7f7ff71;
-  --color-black: #11182c;
-  --color-none: #ffffff00;
+  --color-primary: #1f2a44;
+  --color-primary-trans: #1f2a4431;
+  --color-secondary: #2e2e2e;
+  --color-white: #f7f8fa; /* Background color */
+  --color-white-trans: #f7f8fa71;
+  --color-grey: #4f5255; /* Secondary text and dividers */
+  --color-accent: #4a6fa5; /* Icon, Hover states, highlights */
+  --color-accent2: #b28c49;
+  --color-accent2trans: #b28c4991;
 
-  --font-joan: var(--font-joan);
-  --font-noto: var(--font-notoSans);
+  --font-sourceSemibold: var(--sourceSemibold);
+  --font-sourceLight: var(--sourceLight);
 }
+
+@custom-variant hover (&:hover);
 
 h1 {
-  @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[6rem];
+  @apply leading-none tracking-[-1px] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[4.5rem] text-white;
 }
 h2 {
-  @apply text-2xl sm:text-3xl lg:text-4xl xl:text-5xl;
+  @apply leading-none tracking-[-1px] text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-primary;
 }
 h3 {
-  @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
+  @apply leading-none tracking-[-1px] text-xl sm:text-2xl lg:text-3xl text-primary;
+}
+h4 {
+  @apply leading-none tracking-[-1px] text-lg lg:text-xl xl:text-2xl text-primary font-sourceLight;
 }
 p {
-  @apply text-xs sm:text-sm lg:text-base xl:text-lg;
+  @apply font-sourceLight tracking-[0px] leading-normal text-base sm:text-lg;
+}
+a {
+  @apply cursor-pointer hover:text-white-trans text-lg md:text-xl;
+}
+th {
+  @apply md:text-lg xl:text-xl;
+}
+td {
+  @apply md:text-lg xl:text-xl;
+}
+
+@layer components {
+  .section-container {
+    @apply py-10 md:pt-10 md:py-14 lg:py-18 xl:py-22 px-4 w-full;
+  }
+  .contact-container {
+    @apply flex flex-col items-center justify-start gap-2 border-grey/20 border p-4 h-[215px] lg:h-[235px] w-[250px] md:w-full;
+  }
+  .booking-form-input {
+    @apply w-full border border-grey/20 py-2 px-3 rounded focus:outline-none focus:ring-2 text-xs lg:text-sm;
+  }
+
+  .booking-form-label {
+    @apply block text-sm lg:text-base font-medium mb-1 pt-1;
+  }
+
+  .form-field {
+    @apply w-full;
+  }
+
+  /* Messages and text */
+  .error-message {
+    @apply text-sm mt-1;
+    color: var(--color-danger);
+  }
+
+  .loading-text {
+    @apply text-sm mb-2;
+    color: var(--color-primary);
+  }
+
+  /* Buttons */
+  .submit-button {
+    @apply text-white py-2 px-4 rounded-lg text-xl disabled:opacity-50 cursor-pointer bg-primary;
+  }
+}
+
+@layer utilities {
+  .button {
+    @apply font-sourceSemibold leading-normal tracking-[.5px] text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white;
+  }
+  .button-style {
+    @apply disabled:pointer-events-none disabled:opacity-50 rounded-md bg-accent2 hover:bg-accent2trans text-white px-6 py-1 md:py-2 md:px-8 cursor-pointer;
+  }
+  .scale-up {
+    @apply hover:scale-105 transition-transform duration-200;
+  }
+  .scale-down {
+    @apply active:scale-95 transition-transform duration-200;
+  }
+  .shadow-up-left {
+    @apply shadow-[0_0_15px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(0,0,0,0.15)];
+  }
+  .full-shadow {
+    @apply shadow-[0_0_5px_rgba(0,0,0,0.2)];
+  }
 }
