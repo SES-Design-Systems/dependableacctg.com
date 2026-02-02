@@ -20,8 +20,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.png", type: "image/png" }, 
+      { url: "/favicon.png", type: "image/png" },
     ],
+  },
+  verification: {
+    google: "PBBFtBWVxob8h3KT2Rjq83To5eSb7Fu_31nG85_6foI",
   },
 };
 
