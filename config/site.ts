@@ -33,6 +33,11 @@ export const siteConfig = {
       label: "Business Taxes",
       duration: [60, 120],
     },
+    {
+      id: "BusinessPersonalTaxes",
+      label: "Business + Personal Taxes",
+      duration: [30, 60, 90, 120, 150, 180],
+    },
   ],
 
   /**
@@ -76,23 +81,32 @@ export const siteConfig = {
     timezone: "America/New_York",
 
     // How many days ahead can users book?
-    advanceBookingDays: 30,
+    advanceBookingDays: 180,
 
     // Minimum notice required (in hours)
     minimumNoticeHours: 24,
 
-    // Business hours (24-hour format)
-    openHour: 9,  // 9am
-    closeHour: 17, // 5pm
+    // Business hours per day (use "HH:MM" format, e.g. "09:00", "17:30")
+    // Set to null for days when booking is unavailable
+    schedule: {
+      sunday: null,
+      monday: { open: "10:00", close: "19:30" },
+      tuesday: { open: "10:00", close: "19:30" },
+      wednesday: { open: "10:00", close: "19:30" },
+      thursday: { open: "10:00", close: "19:30" },
+      friday: { open: "10:00", close: "19:30" },
+      saturday: { open: "10:00", close: "16:00" },
+    },
 
-    // Days available for booking (0=Sunday, 1=Monday, ... 6=Saturday)
-    bookingDays: [1, 2, 3, 4, 5], // Mon-Fri
+    // Email addresses to notify when a new booking is made
+    // These will receive calendar invitations for each booking
+    notificationEmails: ["andrew@dependableacctg.com", "sal@dependableacctg.com"],
 
     // business info
     businessInfo: {
-      name: "Andrew Finocchiaro", // who am i making an appointment with
-      // if meeting is in person 
-      address: "78 Ottavio Promenade",  
+      name: "Dependable Accounting", // who am i making an appointment with
+      // if meeting is in person
+      address: "73 Ottavio Promenade",
       city: "Staten Island, NY 10307"
     },
   },

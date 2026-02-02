@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -74,16 +74,7 @@ export default function BookingForm() {
     setAvailableSlots([]);
   }, [watchedMeetingType, setValue]);
 
-  // Fetch available slots when date or duration changes
-  useEffect(() => {
-    if (selected && watchedDuration) {
-      fetchAvailableSlots();
-    } else {
-      setAvailableSlots([]);
-    }
-  }, [selected, watchedDuration]);
-
-  const fetchAvailableSlots = async () => {
+  const fetchAvailableSlots = useCallback(async () => {
     if (!selected || !watchedDuration) return;
 
     setLoadingSlots(true);
@@ -113,7 +104,16 @@ export default function BookingForm() {
     } finally {
       setLoadingSlots(false);
     }
-  };
+  }, [selected, watchedDuration]);
+
+  // Fetch available slots when date or duration changes
+  useEffect(() => {
+    if (selected && watchedDuration) {
+      fetchAvailableSlots();
+    } else {
+      setAvailableSlots([]);
+    }
+  }, [selected, watchedDuration, fetchAvailableSlots]);
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -298,7 +298,7 @@ export default function BookingForm() {
           {watchedMeetingType && availableDurations.length > 0 && (
             <div className="form-field">
               <label className="booking-form-label">Duration*</label>
-              <div className="flex gap-3">
+              <div className="grid grid-cols-3 gap-3 ">
                 {availableDurations.map((duration) => (
                   <label key={duration} className="cursor-pointer">
                     <input
@@ -349,7 +349,10 @@ export default function BookingForm() {
               onSelect={handleDateSelect}
               disabled={[
                 { before: new Date() },
-                (date) => !siteConfig.business.bookingDays.includes(date.getDay())
+                (date) => {
+                  const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const;
+                  return !siteConfig.business.schedule[dayNames[date.getDay()]];
+                }
               ]}
               className="text-sm lg:text-base"
             />
@@ -415,7 +418,7 @@ export default function BookingForm() {
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col items-center md:items-start gap-4">
           {/* reCAPTCHA */}
           <ReCAPTCHA
             ref={recaptchaRef}

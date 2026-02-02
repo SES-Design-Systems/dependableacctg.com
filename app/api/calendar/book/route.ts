@@ -32,6 +32,20 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: ENV_ERROR_MESSAGE }, { status: 503 });
     }
 
+    const body = await req.json();
+
+    // Validate the form data first (cheapest check, no external calls)
+    const validatedData = bookingSchema.parse(body);
+    const {
+      name,
+      email,
+      phone,
+      meetingType,
+      selectedDuration,
+      selectedTime,
+      message,
+    } = validatedData;
+
     // Get IP for rate limiting
     const headersList = await headers();
     const ip = headersList.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
@@ -44,20 +58,6 @@ export async function POST(req: Request) {
         { status: 429 }
       );
     }
-
-    const body = await req.json();
-
-    // Validate the form data
-    const validatedData = bookingSchema.parse(body);
-    const {
-      name,
-      email,
-      phone,
-      meetingType,
-      selectedDuration,
-      selectedTime,
-      message,
-    } = validatedData;
 
     // Check email rate limit (2 bookings per day)
     const emailLimit = await emailRatelimit.limit(email);
@@ -100,26 +100,60 @@ export async function POST(req: Request) {
     const minNoticeMs = siteConfig.business.minimumNoticeHours * 60 * 60 * 1000;
     if (startTime.getTime() - now.getTime() < minNoticeMs) {
       return NextResponse.json(
-        { error: `Bookings require at least ${siteConfig.business.minimumNoticeHours} hours notice` },
+        {
+          error: `Bookings require at least ${siteConfig.business.minimumNoticeHours} hours notice`,
+        },
         { status: 400 }
       );
     }
 
     // Date/Time validation: within advance booking window
-    const maxAdvanceMs = siteConfig.business.advanceBookingDays * 24 * 60 * 60 * 1000;
+    const maxAdvanceMs =
+      siteConfig.business.advanceBookingDays * 24 * 60 * 60 * 1000;
     if (startTime.getTime() - now.getTime() > maxAdvanceMs) {
       return NextResponse.json(
-        { error: `Bookings can only be made up to ${siteConfig.business.advanceBookingDays} days in advance` },
+        {
+          error: `Bookings can only be made up to ${siteConfig.business.advanceBookingDays} days in advance`,
+        },
         { status: 400 }
       );
     }
 
-    // Date/Time validation: during business hours
-    const { openHour, closeHour } = siteConfig.business;
-    const hour = startTime.getHours();
-    if (hour < openHour || hour >= closeHour) {
+    // Date/Time validation: check if day is available and during business hours
+    const dayNames = [
+      "sunday",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+    ] as const;
+    const dayOfWeek = startTime.getDay();
+    const daySchedule = siteConfig.business.schedule[dayNames[dayOfWeek]];
+
+    if (!daySchedule) {
       return NextResponse.json(
-        { error: `Bookings are only available between ${openHour}am and ${closeHour > 12 ? closeHour - 12 + 'pm' : closeHour + 'am'}` },
+        { error: "Bookings are not available on this day" },
+        { status: 400 }
+      );
+    }
+
+    // Parse time strings "HH:MM" into comparable values
+    const parseTime = (timeStr: string) => {
+      const [hour, minute] = timeStr.split(":").map(Number);
+      return hour * 60 + (minute || 0); // Convert to minutes since midnight
+    };
+
+    const openMinutes = parseTime(daySchedule.open);
+    const closeMinutes = parseTime(daySchedule.close);
+    const bookingMinutes = startTime.getHours() * 60 + startTime.getMinutes();
+
+    if (bookingMinutes < openMinutes || bookingMinutes >= closeMinutes) {
+      return NextResponse.json(
+        {
+          error: `Bookings are only available between ${daySchedule.open} and ${daySchedule.close}`,
+        },
         { status: 400 }
       );
     }
@@ -138,17 +172,22 @@ export async function POST(req: Request) {
       singleEvents: true,
     });
 
-    const conflictingEvents = (existingEvents.data.items || []).filter((event) => {
-      // Skip all-day events
-      if (event.start?.date || event.end?.date) return false;
-      // Skip events marked as "free"
-      if (event.transparency === "transparent") return false;
-      return true;
-    });
+    const conflictingEvents = (existingEvents.data.items || []).filter(
+      (event) => {
+        // Skip all-day events
+        if (event.start?.date || event.end?.date) return false;
+        // Skip events marked as "free"
+        if (event.transparency === "transparent") return false;
+        return true;
+      }
+    );
 
     if (conflictingEvents.length > 0) {
       return NextResponse.json(
-        { error: "This time slot is no longer available. Please select another time." },
+        {
+          error:
+            "This time slot is no longer available. Please select another time.",
+        },
         { status: 409 }
       );
     }
@@ -171,7 +210,10 @@ ${message ? `\nMessage: ${message}` : ""}
         dateTime: endTime.toISOString(),
         timeZone: siteConfig.business.timezone,
       },
-      attendees: [{ email: email, displayName: name }],
+      attendees: [
+        { email: email, displayName: name },
+        ...siteConfig.business.notificationEmails.map((e) => ({ email: e })),
+      ],
       reminders: {
         useDefault: false,
         overrides: [
@@ -205,7 +247,12 @@ ${message ? `\nMessage: ${message}` : ""}
       return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
     }
 
-    if (error && typeof error === "object" && "code" in error && error.code === 409) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === 409
+    ) {
       return NextResponse.json(
         { error: "Time slot is no longer available" },
         { status: 409 }
@@ -213,7 +260,10 @@ ${message ? `\nMessage: ${message}` : ""}
     }
 
     return NextResponse.json(
-      { error: "Failed to create booking. Please try again or contact the site owner." },
+      {
+        error:
+          "Failed to create booking. Please try again or contact the site owner.",
+      },
       { status: 500 }
     );
   }

@@ -17,11 +17,11 @@ export default function CallUs() {
       </a>
       <h3>Call</h3>
       <span className=" h-[1px] w-full bg-grey/20" />
-      <a href="tel:+17183519201" className="hover:!text-primary/70">
-        +1 (718) 351-9201
+      <a href="tel:+17183171485" className="hover:!text-primary/70">
+        +1 (718) 317-1485
       </a>
       <p className="text-center">
-        Office Hours <br /> Mon-Fri, 9am - 5pm
+        Office Hours <br /> Mon-Sat, 10am - 7pm
       </p>
     </div>
   );

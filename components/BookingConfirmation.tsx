@@ -49,27 +49,27 @@ export default function BookingConfirmation({
       </button>
 
       <div className="flex flex-col items-center justify-between lg:justify-start gap-4 w-full">
-        <CalendarCheck className="text-success size-18" />
+        <CalendarCheck className="text-green-700 size-18" />
         <div className="text-xl text-center text-black">
           {name.split(" ")[0]}, we&apos;ve confirmed your appointment.
         </div>
       </div>
-      <div className="flex items-center justify-between w-full">
-        <div className="flex items-center justify-center font-bold text-black text-2xl gap-3 w-full">
-          <div>{formattedTime}</div>
-          <span className="bg-gray-400 h-7 w-0.5" />
-          <div className="">{siteConfig.business.businessInfo.name}</div>
+      <div className="grid grid-cols-[1fr_40px_1fr] place-items-center w-full">
+        <div className="font-bold text-black text-2xl">{formattedTime}</div>
+        <span className="bg-gray-400 h-7 w-0.5" />
+        <div className="font-bold text-black text-center text-2xl">
+          {siteConfig.business.businessInfo.name}
         </div>
       </div>
       <div className="flex flex-col items-center gap-5 w-full">
-        <div className="flex flex-col items-center justify-between text-lg w-full text-gray-500">
+        <div className="flex flex-col items-center justify-between gap-3 text-lg w-full text-gray-500">
           <div>{formattedDate}</div>
           <div className="flex items-center justify-center gap-3 w-full">
             <div className="text-center">
               {siteConfig.business.businessInfo.address}
             </div>
             <span className="bg-gray-400 h-6 w-0.5" />
-            <div>{siteConfig.business.businessInfo.city}</div>
+            <div className="text-center">{siteConfig.business.businessInfo.city}</div>
           </div>
         </div>
       </div>

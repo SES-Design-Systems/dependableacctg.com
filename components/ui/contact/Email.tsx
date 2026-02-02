@@ -5,12 +5,12 @@ export default function Email() {
     <div className="contact-container md:!items-start md:!h-[175px] full-shadow">
       <div className="flex flex-col md:flex-row items-center justify-center gap-2">
         <a
-          href="mailto:andrew@dependableacctg.com"
+          href="mailto:info@dependableacctg.com"
           className="cursor-pointer hover:scale-105 transition-all duration-300"
         >
           <Image
             src="/icons/email.svg"
-            alt="phone"
+            alt="email"
             height={40}
             width={40}
             className=""
@@ -21,7 +21,7 @@ export default function Email() {
       </div>
       <span className="h-[1px] w-full bg-grey/20" />
       <a
-        href="mailto:andrew@dependableacctg.com"
+        href="mailto:info@dependableacctg.com"
         className="hover:!text-primary/70"
       >
         info@dependableacctg.com

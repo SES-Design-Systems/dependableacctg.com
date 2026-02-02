@@ -10,7 +10,7 @@ export default function Visit() {
       >
         <Image
           src="/icons/clipboard.svg"
-          alt="phone"
+          alt="location"
           height={40}
           width={40}
           className=""

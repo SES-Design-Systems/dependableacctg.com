@@ -10,6 +10,12 @@ function getTimezoneOffset(date: Date, timezone: string): number {
   return new Date(utcTime).getTime() - new Date(tzTime).getTime();
 }
 
+// Parse time string "HH:MM" into hours and minutes
+function parseTime(timeStr: string): { hour: number; minute: number } {
+  const [hour, minute] = timeStr.split(':').map(Number);
+  return { hour, minute: minute || 0 };
+}
+
 export async function GET(req: Request) {
   try {
     const envCheck = validateBookingEnv();
@@ -32,10 +38,13 @@ export async function GET(req: Request) {
       );
     }
 
-    // Check if the day is a valid booking day
-    const { bookingDays } = siteConfig.business;
+    // Get schedule for the selected day
+    const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const;
     const dayOfWeek = selectedDate.getDay();
-    if (!bookingDays.includes(dayOfWeek)) {
+    const daySchedule = siteConfig.business.schedule[dayNames[dayOfWeek]];
+
+    // Check if the day is available for booking
+    if (!daySchedule) {
       return NextResponse.json({
         date: selectedDate.toISOString().split("T")[0],
         availableSlots: [],
@@ -47,13 +56,12 @@ export async function GET(req: Request) {
     const { timezone } = siteConfig.business;
     const tzOffset = getTimezoneOffset(selectedDate, timezone);
 
-    const timeMin = new Date(selectedDate);
-    timeMin.setHours(0, 0, 0, 0);
-    timeMin.setTime(timeMin.getTime() + tzOffset);
+    // Parse date for UTC calculations
+    const [year, month, day] = date.split('-').map(Number);
 
-    const timeMax = new Date(selectedDate);
-    timeMax.setHours(23, 59, 59, 999);
-    timeMax.setTime(timeMax.getTime() + tzOffset);
+    // Get calendar events for the full day in business timezone
+    const timeMin = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0) + tzOffset);
+    const timeMax = new Date(Date.UTC(year, month - 1, day, 23, 59, 59, 999) + tzOffset);
 
     // Use events API instead of freebusy to get individual events
     const res = await calendar.events.list({
@@ -88,16 +96,17 @@ export async function GET(req: Request) {
     }
 
     // Generate slots based on business hours in the configured timezone
-    const { openHour, closeHour } = siteConfig.business;
+    const openTime = parseTime(daySchedule.open);
+    const closeTime = parseTime(daySchedule.close);
+
+    // Create times in UTC, accounting for business timezone
+    // tzOffset is (UTC - businessTZ), so we add it to convert business time to UTC
+    const openTimeUTC = Date.UTC(year, month - 1, day, openTime.hour, openTime.minute, 0, 0) + tzOffset;
+    const closeTimeUTC = Date.UTC(year, month - 1, day, closeTime.hour, closeTime.minute, 0, 0) + tzOffset;
 
     const slots: { start: string; end: string }[] = [];
-    let current = new Date(selectedDate);
-    current.setHours(openHour, 0, 0, 0);
-    current.setTime(current.getTime() + tzOffset);
-
-    const endOfDay = new Date(selectedDate);
-    endOfDay.setHours(closeHour, 0, 0, 0);
-    endOfDay.setTime(endOfDay.getTime() + tzOffset);
+    let current = new Date(openTimeUTC);
+    const endOfDay = new Date(closeTimeUTC);
 
     while (current < endOfDay) {
       const slotEnd = new Date(current.getTime() + duration * 60000);
