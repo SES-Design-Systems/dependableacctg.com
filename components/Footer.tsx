@@ -23,7 +23,7 @@ export default function Footer() {
             >
               73 Ottavio Promenade Staten Island, NY 10307
             </a>
-            <a href="tel:+17183171485">Phone: +1 (718) 317-1485</a>
+            <a href="tel:+17183519201">Phone: +1 (718) 351-9201</a>
             <span className="cursor-pointer hover:text-white-trans text-lg md:text-xl">Fax: +1 (718) 317-1685</span>
             <a href="mailto:info@dependableacctg.com">
               info@dependableacctg.com
