@@ -1,21 +1,30 @@
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
+// In-memory sliding window rate limiter (no external dependencies)
+const store = new Map<string, number[]>();
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
+function checkRateLimit(
+  key: string,
+  maxRequests: number,
+  windowMs: number
+): { success: boolean } {
+  const now = Date.now();
+  const timestamps = store.get(key)?.filter((t) => now - t < windowMs) || [];
+
+  if (timestamps.length >= maxRequests) {
+    store.set(key, timestamps);
+    return { success: false };
+  }
+
+  timestamps.push(now);
+  store.set(key, timestamps);
+  return { success: true };
+}
 
 // 5 booking attempts per IP per hour
-export const ipRatelimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(5, "1 h"),
-  prefix: "ratelimit:ip",
-});
+export function ipRateLimit(ip: string) {
+  return checkRateLimit(`ip:${ip}`, 5, 60 * 60 * 1000);
+}
 
 // 2 successful bookings per email per day
-export const emailRatelimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(2, "24 h"),
-  prefix: "ratelimit:email",
-});
+export function emailRateLimit(email: string) {
+  return checkRateLimit(`email:${email}`, 2, 24 * 60 * 60 * 1000);
+}

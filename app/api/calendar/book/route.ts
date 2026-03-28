@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { getCalendarClient } from "@/lib/google";
-import { ipRatelimit, emailRatelimit } from "@/lib/ratelimit";
+import { ipRateLimit, emailRateLimit } from "@/lib/ratelimit";
 import { z } from "zod";
 import { siteConfig } from "@/config/site";
 import { validateBookingEnv, ENV_ERROR_MESSAGE } from "@/lib/env";
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
     const ip = headersList.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
 
     // Check IP rate limit (5 attempts per hour)
-    const ipLimit = await ipRatelimit.limit(ip);
+    const ipLimit = ipRateLimit(ip);
     if (!ipLimit.success) {
       return NextResponse.json(
         { error: "Too many requests, please try again later" },
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     }
 
     // Check email rate limit (2 bookings per day)
-    const emailLimit = await emailRatelimit.limit(email);
+    const emailLimit = emailRateLimit(email);
     if (!emailLimit.success) {
       return NextResponse.json(
         { error: "Too many requests, please try again later" },
