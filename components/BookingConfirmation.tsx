@@ -15,15 +15,12 @@ interface Confirm {
 export default function BookingConfirmation({
   date,
   time,
-  meetingType,
   name,
-  email,
-  phone,
-  message,
   onClose,
 }: Confirm) {
-  // Convert string date to formatted date
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+  // Parse date parts to avoid UTC timezone shift
+  const [year, month, day] = date.split("-").map(Number);
+  const formattedDate = new Date(year, month - 1, day).toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
