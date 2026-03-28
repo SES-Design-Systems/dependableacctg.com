@@ -4,8 +4,6 @@ const REQUIRED_ENV_VARS = [
   "GOOGLE_CLIENT_SECRET",
   "GOOGLE_REFRESH_TOKEN",
   "RECAPTCHA_SECRET_KEY",
-  "UPSTASH_REDIS_REST_URL",
-  "UPSTASH_REDIS_REST_TOKEN",
 ] as const;
 
 export function validateBookingEnv(): { valid: boolean; missing: string[] } {
